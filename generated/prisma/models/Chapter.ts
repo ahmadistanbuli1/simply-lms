@@ -37,8 +37,11 @@ export type ChapterSumAggregateOutputType = {
 export type ChapterMinAggregateOutputType = {
   id: string | null
   title: string | null
+  description: string | null
+  videoUrl: string | null
   position: number | null
   isPublished: boolean | null
+  isFree: boolean | null
   createdAt: Date | null
   updatedAt: Date | null
   courseId: string | null
@@ -47,8 +50,11 @@ export type ChapterMinAggregateOutputType = {
 export type ChapterMaxAggregateOutputType = {
   id: string | null
   title: string | null
+  description: string | null
+  videoUrl: string | null
   position: number | null
   isPublished: boolean | null
+  isFree: boolean | null
   createdAt: Date | null
   updatedAt: Date | null
   courseId: string | null
@@ -57,8 +63,11 @@ export type ChapterMaxAggregateOutputType = {
 export type ChapterCountAggregateOutputType = {
   id: number
   title: number
+  description: number
+  videoUrl: number
   position: number
   isPublished: number
+  isFree: number
   createdAt: number
   updatedAt: number
   courseId: number
@@ -77,8 +86,11 @@ export type ChapterSumAggregateInputType = {
 export type ChapterMinAggregateInputType = {
   id?: true
   title?: true
+  description?: true
+  videoUrl?: true
   position?: true
   isPublished?: true
+  isFree?: true
   createdAt?: true
   updatedAt?: true
   courseId?: true
@@ -87,8 +99,11 @@ export type ChapterMinAggregateInputType = {
 export type ChapterMaxAggregateInputType = {
   id?: true
   title?: true
+  description?: true
+  videoUrl?: true
   position?: true
   isPublished?: true
+  isFree?: true
   createdAt?: true
   updatedAt?: true
   courseId?: true
@@ -97,8 +112,11 @@ export type ChapterMaxAggregateInputType = {
 export type ChapterCountAggregateInputType = {
   id?: true
   title?: true
+  description?: true
+  videoUrl?: true
   position?: true
   isPublished?: true
+  isFree?: true
   createdAt?: true
   updatedAt?: true
   courseId?: true
@@ -194,8 +212,11 @@ export type ChapterGroupByArgs<ExtArgs extends runtime.Types.Extensions.Internal
 export type ChapterGroupByOutputType = {
   id: string
   title: string
+  description: string | null
+  videoUrl: string | null
   position: number
   isPublished: boolean
+  isFree: boolean
   createdAt: Date
   updatedAt: Date
   courseId: string
@@ -227,8 +248,11 @@ export type ChapterWhereInput = {
   NOT?: Prisma.ChapterWhereInput | Prisma.ChapterWhereInput[]
   id?: Prisma.StringFilter<"Chapter"> | string
   title?: Prisma.StringFilter<"Chapter"> | string
+  description?: Prisma.StringNullableFilter<"Chapter"> | string | null
+  videoUrl?: Prisma.StringNullableFilter<"Chapter"> | string | null
   position?: Prisma.IntFilter<"Chapter"> | number
   isPublished?: Prisma.BoolFilter<"Chapter"> | boolean
+  isFree?: Prisma.BoolFilter<"Chapter"> | boolean
   createdAt?: Prisma.DateTimeFilter<"Chapter"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Chapter"> | Date | string
   courseId?: Prisma.StringFilter<"Chapter"> | string
@@ -239,8 +263,11 @@ export type ChapterWhereInput = {
 export type ChapterOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   title?: Prisma.SortOrder
+  description?: Prisma.SortOrderInput | Prisma.SortOrder
+  videoUrl?: Prisma.SortOrderInput | Prisma.SortOrder
   position?: Prisma.SortOrder
   isPublished?: Prisma.SortOrder
+  isFree?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   courseId?: Prisma.SortOrder
@@ -254,8 +281,11 @@ export type ChapterWhereUniqueInput = Prisma.AtLeast<{
   OR?: Prisma.ChapterWhereInput[]
   NOT?: Prisma.ChapterWhereInput | Prisma.ChapterWhereInput[]
   title?: Prisma.StringFilter<"Chapter"> | string
+  description?: Prisma.StringNullableFilter<"Chapter"> | string | null
+  videoUrl?: Prisma.StringNullableFilter<"Chapter"> | string | null
   position?: Prisma.IntFilter<"Chapter"> | number
   isPublished?: Prisma.BoolFilter<"Chapter"> | boolean
+  isFree?: Prisma.BoolFilter<"Chapter"> | boolean
   createdAt?: Prisma.DateTimeFilter<"Chapter"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Chapter"> | Date | string
   courseId?: Prisma.StringFilter<"Chapter"> | string
@@ -266,8 +296,11 @@ export type ChapterWhereUniqueInput = Prisma.AtLeast<{
 export type ChapterOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   title?: Prisma.SortOrder
+  description?: Prisma.SortOrderInput | Prisma.SortOrder
+  videoUrl?: Prisma.SortOrderInput | Prisma.SortOrder
   position?: Prisma.SortOrder
   isPublished?: Prisma.SortOrder
+  isFree?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   courseId?: Prisma.SortOrder
@@ -284,8 +317,11 @@ export type ChapterScalarWhereWithAggregatesInput = {
   NOT?: Prisma.ChapterScalarWhereWithAggregatesInput | Prisma.ChapterScalarWhereWithAggregatesInput[]
   id?: Prisma.StringWithAggregatesFilter<"Chapter"> | string
   title?: Prisma.StringWithAggregatesFilter<"Chapter"> | string
+  description?: Prisma.StringNullableWithAggregatesFilter<"Chapter"> | string | null
+  videoUrl?: Prisma.StringNullableWithAggregatesFilter<"Chapter"> | string | null
   position?: Prisma.IntWithAggregatesFilter<"Chapter"> | number
   isPublished?: Prisma.BoolWithAggregatesFilter<"Chapter"> | boolean
+  isFree?: Prisma.BoolWithAggregatesFilter<"Chapter"> | boolean
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Chapter"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Chapter"> | Date | string
   courseId?: Prisma.StringWithAggregatesFilter<"Chapter"> | string
@@ -294,8 +330,11 @@ export type ChapterScalarWhereWithAggregatesInput = {
 export type ChapterCreateInput = {
   id?: string
   title: string
+  description?: string | null
+  videoUrl?: string | null
   position: number
   isPublished?: boolean
+  isFree?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   course: Prisma.CourseCreateNestedOneWithoutChaptersInput
@@ -305,8 +344,11 @@ export type ChapterCreateInput = {
 export type ChapterUncheckedCreateInput = {
   id?: string
   title: string
+  description?: string | null
+  videoUrl?: string | null
   position: number
   isPublished?: boolean
+  isFree?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   courseId: string
@@ -316,8 +358,11 @@ export type ChapterUncheckedCreateInput = {
 export type ChapterUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  videoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   position?: Prisma.IntFieldUpdateOperationsInput | number
   isPublished?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isFree?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   course?: Prisma.CourseUpdateOneRequiredWithoutChaptersNestedInput
@@ -327,8 +372,11 @@ export type ChapterUpdateInput = {
 export type ChapterUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  videoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   position?: Prisma.IntFieldUpdateOperationsInput | number
   isPublished?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isFree?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   courseId?: Prisma.StringFieldUpdateOperationsInput | string
@@ -338,8 +386,11 @@ export type ChapterUncheckedUpdateInput = {
 export type ChapterCreateManyInput = {
   id?: string
   title: string
+  description?: string | null
+  videoUrl?: string | null
   position: number
   isPublished?: boolean
+  isFree?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   courseId: string
@@ -348,8 +399,11 @@ export type ChapterCreateManyInput = {
 export type ChapterUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  videoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   position?: Prisma.IntFieldUpdateOperationsInput | number
   isPublished?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isFree?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -357,8 +411,11 @@ export type ChapterUpdateManyMutationInput = {
 export type ChapterUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  videoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   position?: Prisma.IntFieldUpdateOperationsInput | number
   isPublished?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isFree?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   courseId?: Prisma.StringFieldUpdateOperationsInput | string
@@ -377,8 +434,11 @@ export type ChapterOrderByRelationAggregateInput = {
 export type ChapterCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   title?: Prisma.SortOrder
+  description?: Prisma.SortOrder
+  videoUrl?: Prisma.SortOrder
   position?: Prisma.SortOrder
   isPublished?: Prisma.SortOrder
+  isFree?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   courseId?: Prisma.SortOrder
@@ -391,8 +451,11 @@ export type ChapterAvgOrderByAggregateInput = {
 export type ChapterMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   title?: Prisma.SortOrder
+  description?: Prisma.SortOrder
+  videoUrl?: Prisma.SortOrder
   position?: Prisma.SortOrder
   isPublished?: Prisma.SortOrder
+  isFree?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   courseId?: Prisma.SortOrder
@@ -401,8 +464,11 @@ export type ChapterMaxOrderByAggregateInput = {
 export type ChapterMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   title?: Prisma.SortOrder
+  description?: Prisma.SortOrder
+  videoUrl?: Prisma.SortOrder
   position?: Prisma.SortOrder
   isPublished?: Prisma.SortOrder
+  isFree?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   courseId?: Prisma.SortOrder
@@ -484,8 +550,11 @@ export type ChapterUpdateOneRequiredWithoutLessonsNestedInput = {
 export type ChapterCreateWithoutCourseInput = {
   id?: string
   title: string
+  description?: string | null
+  videoUrl?: string | null
   position: number
   isPublished?: boolean
+  isFree?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   lessons?: Prisma.LessonCreateNestedManyWithoutChapterInput
@@ -494,8 +563,11 @@ export type ChapterCreateWithoutCourseInput = {
 export type ChapterUncheckedCreateWithoutCourseInput = {
   id?: string
   title: string
+  description?: string | null
+  videoUrl?: string | null
   position: number
   isPublished?: boolean
+  isFree?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   lessons?: Prisma.LessonUncheckedCreateNestedManyWithoutChapterInput
@@ -533,8 +605,11 @@ export type ChapterScalarWhereInput = {
   NOT?: Prisma.ChapterScalarWhereInput | Prisma.ChapterScalarWhereInput[]
   id?: Prisma.StringFilter<"Chapter"> | string
   title?: Prisma.StringFilter<"Chapter"> | string
+  description?: Prisma.StringNullableFilter<"Chapter"> | string | null
+  videoUrl?: Prisma.StringNullableFilter<"Chapter"> | string | null
   position?: Prisma.IntFilter<"Chapter"> | number
   isPublished?: Prisma.BoolFilter<"Chapter"> | boolean
+  isFree?: Prisma.BoolFilter<"Chapter"> | boolean
   createdAt?: Prisma.DateTimeFilter<"Chapter"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Chapter"> | Date | string
   courseId?: Prisma.StringFilter<"Chapter"> | string
@@ -543,8 +618,11 @@ export type ChapterScalarWhereInput = {
 export type ChapterCreateWithoutLessonsInput = {
   id?: string
   title: string
+  description?: string | null
+  videoUrl?: string | null
   position: number
   isPublished?: boolean
+  isFree?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   course: Prisma.CourseCreateNestedOneWithoutChaptersInput
@@ -553,8 +631,11 @@ export type ChapterCreateWithoutLessonsInput = {
 export type ChapterUncheckedCreateWithoutLessonsInput = {
   id?: string
   title: string
+  description?: string | null
+  videoUrl?: string | null
   position: number
   isPublished?: boolean
+  isFree?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
   courseId: string
@@ -579,8 +660,11 @@ export type ChapterUpdateToOneWithWhereWithoutLessonsInput = {
 export type ChapterUpdateWithoutLessonsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  videoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   position?: Prisma.IntFieldUpdateOperationsInput | number
   isPublished?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isFree?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   course?: Prisma.CourseUpdateOneRequiredWithoutChaptersNestedInput
@@ -589,8 +673,11 @@ export type ChapterUpdateWithoutLessonsInput = {
 export type ChapterUncheckedUpdateWithoutLessonsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  videoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   position?: Prisma.IntFieldUpdateOperationsInput | number
   isPublished?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isFree?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   courseId?: Prisma.StringFieldUpdateOperationsInput | string
@@ -599,8 +686,11 @@ export type ChapterUncheckedUpdateWithoutLessonsInput = {
 export type ChapterCreateManyCourseInput = {
   id?: string
   title: string
+  description?: string | null
+  videoUrl?: string | null
   position: number
   isPublished?: boolean
+  isFree?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -608,8 +698,11 @@ export type ChapterCreateManyCourseInput = {
 export type ChapterUpdateWithoutCourseInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  videoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   position?: Prisma.IntFieldUpdateOperationsInput | number
   isPublished?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isFree?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   lessons?: Prisma.LessonUpdateManyWithoutChapterNestedInput
@@ -618,8 +711,11 @@ export type ChapterUpdateWithoutCourseInput = {
 export type ChapterUncheckedUpdateWithoutCourseInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  videoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   position?: Prisma.IntFieldUpdateOperationsInput | number
   isPublished?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isFree?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   lessons?: Prisma.LessonUncheckedUpdateManyWithoutChapterNestedInput
@@ -628,8 +724,11 @@ export type ChapterUncheckedUpdateWithoutCourseInput = {
 export type ChapterUncheckedUpdateManyWithoutCourseInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  videoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   position?: Prisma.IntFieldUpdateOperationsInput | number
   isPublished?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isFree?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -668,8 +767,11 @@ export type ChapterCountOutputTypeCountLessonsArgs<ExtArgs extends runtime.Types
 export type ChapterSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   title?: boolean
+  description?: boolean
+  videoUrl?: boolean
   position?: boolean
   isPublished?: boolean
+  isFree?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   courseId?: boolean
@@ -681,8 +783,11 @@ export type ChapterSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
 export type ChapterSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   title?: boolean
+  description?: boolean
+  videoUrl?: boolean
   position?: boolean
   isPublished?: boolean
+  isFree?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   courseId?: boolean
@@ -692,8 +797,11 @@ export type ChapterSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exten
 export type ChapterSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   title?: boolean
+  description?: boolean
+  videoUrl?: boolean
   position?: boolean
   isPublished?: boolean
+  isFree?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   courseId?: boolean
@@ -703,14 +811,17 @@ export type ChapterSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exten
 export type ChapterSelectScalar = {
   id?: boolean
   title?: boolean
+  description?: boolean
+  videoUrl?: boolean
   position?: boolean
   isPublished?: boolean
+  isFree?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   courseId?: boolean
 }
 
-export type ChapterOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "title" | "position" | "isPublished" | "createdAt" | "updatedAt" | "courseId", ExtArgs["result"]["chapter"]>
+export type ChapterOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "title" | "description" | "videoUrl" | "position" | "isPublished" | "isFree" | "createdAt" | "updatedAt" | "courseId", ExtArgs["result"]["chapter"]>
 export type ChapterInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   course?: boolean | Prisma.CourseDefaultArgs<ExtArgs>
   lessons?: boolean | Prisma.Chapter$lessonsArgs<ExtArgs>
@@ -732,8 +843,11 @@ export type $ChapterPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     title: string
+    description: string | null
+    videoUrl: string | null
     position: number
     isPublished: boolean
+    isFree: boolean
     createdAt: Date
     updatedAt: Date
     courseId: string
@@ -1164,8 +1278,11 @@ export interface Prisma__ChapterClient<T, Null = never, ExtArgs extends runtime.
 export interface ChapterFieldRefs {
   readonly id: Prisma.FieldRef<"Chapter", 'String'>
   readonly title: Prisma.FieldRef<"Chapter", 'String'>
+  readonly description: Prisma.FieldRef<"Chapter", 'String'>
+  readonly videoUrl: Prisma.FieldRef<"Chapter", 'String'>
   readonly position: Prisma.FieldRef<"Chapter", 'Int'>
   readonly isPublished: Prisma.FieldRef<"Chapter", 'Boolean'>
+  readonly isFree: Prisma.FieldRef<"Chapter", 'Boolean'>
   readonly createdAt: Prisma.FieldRef<"Chapter", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Chapter", 'DateTime'>
   readonly courseId: Prisma.FieldRef<"Chapter", 'String'>

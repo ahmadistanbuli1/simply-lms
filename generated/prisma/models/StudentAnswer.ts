@@ -27,18 +27,21 @@ export type AggregateStudentAnswer = {
 export type StudentAnswerMinAggregateOutputType = {
   id: string | null
   attemptId: string | null
+  questionId: string | null
   optionId: string | null
 }
 
 export type StudentAnswerMaxAggregateOutputType = {
   id: string | null
   attemptId: string | null
+  questionId: string | null
   optionId: string | null
 }
 
 export type StudentAnswerCountAggregateOutputType = {
   id: number
   attemptId: number
+  questionId: number
   optionId: number
   _all: number
 }
@@ -47,18 +50,21 @@ export type StudentAnswerCountAggregateOutputType = {
 export type StudentAnswerMinAggregateInputType = {
   id?: true
   attemptId?: true
+  questionId?: true
   optionId?: true
 }
 
 export type StudentAnswerMaxAggregateInputType = {
   id?: true
   attemptId?: true
+  questionId?: true
   optionId?: true
 }
 
 export type StudentAnswerCountAggregateInputType = {
   id?: true
   attemptId?: true
+  questionId?: true
   optionId?: true
   _all?: true
 }
@@ -138,6 +144,7 @@ export type StudentAnswerGroupByArgs<ExtArgs extends runtime.Types.Extensions.In
 export type StudentAnswerGroupByOutputType = {
   id: string
   attemptId: string
+  questionId: string
   optionId: string
   _count: StudentAnswerCountAggregateOutputType | null
   _min: StudentAnswerMinAggregateOutputType | null
@@ -165,33 +172,41 @@ export type StudentAnswerWhereInput = {
   NOT?: Prisma.StudentAnswerWhereInput | Prisma.StudentAnswerWhereInput[]
   id?: Prisma.StringFilter<"StudentAnswer"> | string
   attemptId?: Prisma.StringFilter<"StudentAnswer"> | string
+  questionId?: Prisma.StringFilter<"StudentAnswer"> | string
   optionId?: Prisma.StringFilter<"StudentAnswer"> | string
   attempt?: Prisma.XOR<Prisma.QuizAttemptScalarRelationFilter, Prisma.QuizAttemptWhereInput>
+  question?: Prisma.XOR<Prisma.QuizQuestionScalarRelationFilter, Prisma.QuizQuestionWhereInput>
   option?: Prisma.XOR<Prisma.QuizOptionScalarRelationFilter, Prisma.QuizOptionWhereInput>
 }
 
 export type StudentAnswerOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   attemptId?: Prisma.SortOrder
+  questionId?: Prisma.SortOrder
   optionId?: Prisma.SortOrder
   attempt?: Prisma.QuizAttemptOrderByWithRelationInput
+  question?: Prisma.QuizQuestionOrderByWithRelationInput
   option?: Prisma.QuizOptionOrderByWithRelationInput
 }
 
 export type StudentAnswerWhereUniqueInput = Prisma.AtLeast<{
   id?: string
+  attemptId_questionId?: Prisma.StudentAnswerAttemptIdQuestionIdCompoundUniqueInput
   AND?: Prisma.StudentAnswerWhereInput | Prisma.StudentAnswerWhereInput[]
   OR?: Prisma.StudentAnswerWhereInput[]
   NOT?: Prisma.StudentAnswerWhereInput | Prisma.StudentAnswerWhereInput[]
   attemptId?: Prisma.StringFilter<"StudentAnswer"> | string
+  questionId?: Prisma.StringFilter<"StudentAnswer"> | string
   optionId?: Prisma.StringFilter<"StudentAnswer"> | string
   attempt?: Prisma.XOR<Prisma.QuizAttemptScalarRelationFilter, Prisma.QuizAttemptWhereInput>
+  question?: Prisma.XOR<Prisma.QuizQuestionScalarRelationFilter, Prisma.QuizQuestionWhereInput>
   option?: Prisma.XOR<Prisma.QuizOptionScalarRelationFilter, Prisma.QuizOptionWhereInput>
-}, "id">
+}, "id" | "attemptId_questionId">
 
 export type StudentAnswerOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   attemptId?: Prisma.SortOrder
+  questionId?: Prisma.SortOrder
   optionId?: Prisma.SortOrder
   _count?: Prisma.StudentAnswerCountOrderByAggregateInput
   _max?: Prisma.StudentAnswerMaxOrderByAggregateInput
@@ -204,36 +219,42 @@ export type StudentAnswerScalarWhereWithAggregatesInput = {
   NOT?: Prisma.StudentAnswerScalarWhereWithAggregatesInput | Prisma.StudentAnswerScalarWhereWithAggregatesInput[]
   id?: Prisma.StringWithAggregatesFilter<"StudentAnswer"> | string
   attemptId?: Prisma.StringWithAggregatesFilter<"StudentAnswer"> | string
+  questionId?: Prisma.StringWithAggregatesFilter<"StudentAnswer"> | string
   optionId?: Prisma.StringWithAggregatesFilter<"StudentAnswer"> | string
 }
 
 export type StudentAnswerCreateInput = {
   id?: string
   attempt: Prisma.QuizAttemptCreateNestedOneWithoutAnswersInput
+  question: Prisma.QuizQuestionCreateNestedOneWithoutStudentAnswersInput
   option: Prisma.QuizOptionCreateNestedOneWithoutAnswersInput
 }
 
 export type StudentAnswerUncheckedCreateInput = {
   id?: string
   attemptId: string
+  questionId: string
   optionId: string
 }
 
 export type StudentAnswerUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   attempt?: Prisma.QuizAttemptUpdateOneRequiredWithoutAnswersNestedInput
+  question?: Prisma.QuizQuestionUpdateOneRequiredWithoutStudentAnswersNestedInput
   option?: Prisma.QuizOptionUpdateOneRequiredWithoutAnswersNestedInput
 }
 
 export type StudentAnswerUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   attemptId?: Prisma.StringFieldUpdateOperationsInput | string
+  questionId?: Prisma.StringFieldUpdateOperationsInput | string
   optionId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type StudentAnswerCreateManyInput = {
   id?: string
   attemptId: string
+  questionId: string
   optionId: string
 }
 
@@ -244,6 +265,7 @@ export type StudentAnswerUpdateManyMutationInput = {
 export type StudentAnswerUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   attemptId?: Prisma.StringFieldUpdateOperationsInput | string
+  questionId?: Prisma.StringFieldUpdateOperationsInput | string
   optionId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
@@ -257,22 +279,72 @@ export type StudentAnswerOrderByRelationAggregateInput = {
   _count?: Prisma.SortOrder
 }
 
+export type StudentAnswerAttemptIdQuestionIdCompoundUniqueInput = {
+  attemptId: string
+  questionId: string
+}
+
 export type StudentAnswerCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   attemptId?: Prisma.SortOrder
+  questionId?: Prisma.SortOrder
   optionId?: Prisma.SortOrder
 }
 
 export type StudentAnswerMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   attemptId?: Prisma.SortOrder
+  questionId?: Prisma.SortOrder
   optionId?: Prisma.SortOrder
 }
 
 export type StudentAnswerMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   attemptId?: Prisma.SortOrder
+  questionId?: Prisma.SortOrder
   optionId?: Prisma.SortOrder
+}
+
+export type StudentAnswerCreateNestedManyWithoutQuestionInput = {
+  create?: Prisma.XOR<Prisma.StudentAnswerCreateWithoutQuestionInput, Prisma.StudentAnswerUncheckedCreateWithoutQuestionInput> | Prisma.StudentAnswerCreateWithoutQuestionInput[] | Prisma.StudentAnswerUncheckedCreateWithoutQuestionInput[]
+  connectOrCreate?: Prisma.StudentAnswerCreateOrConnectWithoutQuestionInput | Prisma.StudentAnswerCreateOrConnectWithoutQuestionInput[]
+  createMany?: Prisma.StudentAnswerCreateManyQuestionInputEnvelope
+  connect?: Prisma.StudentAnswerWhereUniqueInput | Prisma.StudentAnswerWhereUniqueInput[]
+}
+
+export type StudentAnswerUncheckedCreateNestedManyWithoutQuestionInput = {
+  create?: Prisma.XOR<Prisma.StudentAnswerCreateWithoutQuestionInput, Prisma.StudentAnswerUncheckedCreateWithoutQuestionInput> | Prisma.StudentAnswerCreateWithoutQuestionInput[] | Prisma.StudentAnswerUncheckedCreateWithoutQuestionInput[]
+  connectOrCreate?: Prisma.StudentAnswerCreateOrConnectWithoutQuestionInput | Prisma.StudentAnswerCreateOrConnectWithoutQuestionInput[]
+  createMany?: Prisma.StudentAnswerCreateManyQuestionInputEnvelope
+  connect?: Prisma.StudentAnswerWhereUniqueInput | Prisma.StudentAnswerWhereUniqueInput[]
+}
+
+export type StudentAnswerUpdateManyWithoutQuestionNestedInput = {
+  create?: Prisma.XOR<Prisma.StudentAnswerCreateWithoutQuestionInput, Prisma.StudentAnswerUncheckedCreateWithoutQuestionInput> | Prisma.StudentAnswerCreateWithoutQuestionInput[] | Prisma.StudentAnswerUncheckedCreateWithoutQuestionInput[]
+  connectOrCreate?: Prisma.StudentAnswerCreateOrConnectWithoutQuestionInput | Prisma.StudentAnswerCreateOrConnectWithoutQuestionInput[]
+  upsert?: Prisma.StudentAnswerUpsertWithWhereUniqueWithoutQuestionInput | Prisma.StudentAnswerUpsertWithWhereUniqueWithoutQuestionInput[]
+  createMany?: Prisma.StudentAnswerCreateManyQuestionInputEnvelope
+  set?: Prisma.StudentAnswerWhereUniqueInput | Prisma.StudentAnswerWhereUniqueInput[]
+  disconnect?: Prisma.StudentAnswerWhereUniqueInput | Prisma.StudentAnswerWhereUniqueInput[]
+  delete?: Prisma.StudentAnswerWhereUniqueInput | Prisma.StudentAnswerWhereUniqueInput[]
+  connect?: Prisma.StudentAnswerWhereUniqueInput | Prisma.StudentAnswerWhereUniqueInput[]
+  update?: Prisma.StudentAnswerUpdateWithWhereUniqueWithoutQuestionInput | Prisma.StudentAnswerUpdateWithWhereUniqueWithoutQuestionInput[]
+  updateMany?: Prisma.StudentAnswerUpdateManyWithWhereWithoutQuestionInput | Prisma.StudentAnswerUpdateManyWithWhereWithoutQuestionInput[]
+  deleteMany?: Prisma.StudentAnswerScalarWhereInput | Prisma.StudentAnswerScalarWhereInput[]
+}
+
+export type StudentAnswerUncheckedUpdateManyWithoutQuestionNestedInput = {
+  create?: Prisma.XOR<Prisma.StudentAnswerCreateWithoutQuestionInput, Prisma.StudentAnswerUncheckedCreateWithoutQuestionInput> | Prisma.StudentAnswerCreateWithoutQuestionInput[] | Prisma.StudentAnswerUncheckedCreateWithoutQuestionInput[]
+  connectOrCreate?: Prisma.StudentAnswerCreateOrConnectWithoutQuestionInput | Prisma.StudentAnswerCreateOrConnectWithoutQuestionInput[]
+  upsert?: Prisma.StudentAnswerUpsertWithWhereUniqueWithoutQuestionInput | Prisma.StudentAnswerUpsertWithWhereUniqueWithoutQuestionInput[]
+  createMany?: Prisma.StudentAnswerCreateManyQuestionInputEnvelope
+  set?: Prisma.StudentAnswerWhereUniqueInput | Prisma.StudentAnswerWhereUniqueInput[]
+  disconnect?: Prisma.StudentAnswerWhereUniqueInput | Prisma.StudentAnswerWhereUniqueInput[]
+  delete?: Prisma.StudentAnswerWhereUniqueInput | Prisma.StudentAnswerWhereUniqueInput[]
+  connect?: Prisma.StudentAnswerWhereUniqueInput | Prisma.StudentAnswerWhereUniqueInput[]
+  update?: Prisma.StudentAnswerUpdateWithWhereUniqueWithoutQuestionInput | Prisma.StudentAnswerUpdateWithWhereUniqueWithoutQuestionInput[]
+  updateMany?: Prisma.StudentAnswerUpdateManyWithWhereWithoutQuestionInput | Prisma.StudentAnswerUpdateManyWithWhereWithoutQuestionInput[]
+  deleteMany?: Prisma.StudentAnswerScalarWhereInput | Prisma.StudentAnswerScalarWhereInput[]
 }
 
 export type StudentAnswerCreateNestedManyWithoutOptionInput = {
@@ -359,14 +431,64 @@ export type StudentAnswerUncheckedUpdateManyWithoutAttemptNestedInput = {
   deleteMany?: Prisma.StudentAnswerScalarWhereInput | Prisma.StudentAnswerScalarWhereInput[]
 }
 
+export type StudentAnswerCreateWithoutQuestionInput = {
+  id?: string
+  attempt: Prisma.QuizAttemptCreateNestedOneWithoutAnswersInput
+  option: Prisma.QuizOptionCreateNestedOneWithoutAnswersInput
+}
+
+export type StudentAnswerUncheckedCreateWithoutQuestionInput = {
+  id?: string
+  attemptId: string
+  optionId: string
+}
+
+export type StudentAnswerCreateOrConnectWithoutQuestionInput = {
+  where: Prisma.StudentAnswerWhereUniqueInput
+  create: Prisma.XOR<Prisma.StudentAnswerCreateWithoutQuestionInput, Prisma.StudentAnswerUncheckedCreateWithoutQuestionInput>
+}
+
+export type StudentAnswerCreateManyQuestionInputEnvelope = {
+  data: Prisma.StudentAnswerCreateManyQuestionInput | Prisma.StudentAnswerCreateManyQuestionInput[]
+  skipDuplicates?: boolean
+}
+
+export type StudentAnswerUpsertWithWhereUniqueWithoutQuestionInput = {
+  where: Prisma.StudentAnswerWhereUniqueInput
+  update: Prisma.XOR<Prisma.StudentAnswerUpdateWithoutQuestionInput, Prisma.StudentAnswerUncheckedUpdateWithoutQuestionInput>
+  create: Prisma.XOR<Prisma.StudentAnswerCreateWithoutQuestionInput, Prisma.StudentAnswerUncheckedCreateWithoutQuestionInput>
+}
+
+export type StudentAnswerUpdateWithWhereUniqueWithoutQuestionInput = {
+  where: Prisma.StudentAnswerWhereUniqueInput
+  data: Prisma.XOR<Prisma.StudentAnswerUpdateWithoutQuestionInput, Prisma.StudentAnswerUncheckedUpdateWithoutQuestionInput>
+}
+
+export type StudentAnswerUpdateManyWithWhereWithoutQuestionInput = {
+  where: Prisma.StudentAnswerScalarWhereInput
+  data: Prisma.XOR<Prisma.StudentAnswerUpdateManyMutationInput, Prisma.StudentAnswerUncheckedUpdateManyWithoutQuestionInput>
+}
+
+export type StudentAnswerScalarWhereInput = {
+  AND?: Prisma.StudentAnswerScalarWhereInput | Prisma.StudentAnswerScalarWhereInput[]
+  OR?: Prisma.StudentAnswerScalarWhereInput[]
+  NOT?: Prisma.StudentAnswerScalarWhereInput | Prisma.StudentAnswerScalarWhereInput[]
+  id?: Prisma.StringFilter<"StudentAnswer"> | string
+  attemptId?: Prisma.StringFilter<"StudentAnswer"> | string
+  questionId?: Prisma.StringFilter<"StudentAnswer"> | string
+  optionId?: Prisma.StringFilter<"StudentAnswer"> | string
+}
+
 export type StudentAnswerCreateWithoutOptionInput = {
   id?: string
   attempt: Prisma.QuizAttemptCreateNestedOneWithoutAnswersInput
+  question: Prisma.QuizQuestionCreateNestedOneWithoutStudentAnswersInput
 }
 
 export type StudentAnswerUncheckedCreateWithoutOptionInput = {
   id?: string
   attemptId: string
+  questionId: string
 }
 
 export type StudentAnswerCreateOrConnectWithoutOptionInput = {
@@ -395,22 +517,15 @@ export type StudentAnswerUpdateManyWithWhereWithoutOptionInput = {
   data: Prisma.XOR<Prisma.StudentAnswerUpdateManyMutationInput, Prisma.StudentAnswerUncheckedUpdateManyWithoutOptionInput>
 }
 
-export type StudentAnswerScalarWhereInput = {
-  AND?: Prisma.StudentAnswerScalarWhereInput | Prisma.StudentAnswerScalarWhereInput[]
-  OR?: Prisma.StudentAnswerScalarWhereInput[]
-  NOT?: Prisma.StudentAnswerScalarWhereInput | Prisma.StudentAnswerScalarWhereInput[]
-  id?: Prisma.StringFilter<"StudentAnswer"> | string
-  attemptId?: Prisma.StringFilter<"StudentAnswer"> | string
-  optionId?: Prisma.StringFilter<"StudentAnswer"> | string
-}
-
 export type StudentAnswerCreateWithoutAttemptInput = {
   id?: string
+  question: Prisma.QuizQuestionCreateNestedOneWithoutStudentAnswersInput
   option: Prisma.QuizOptionCreateNestedOneWithoutAnswersInput
 }
 
 export type StudentAnswerUncheckedCreateWithoutAttemptInput = {
   id?: string
+  questionId: string
   optionId: string
 }
 
@@ -440,43 +555,75 @@ export type StudentAnswerUpdateManyWithWhereWithoutAttemptInput = {
   data: Prisma.XOR<Prisma.StudentAnswerUpdateManyMutationInput, Prisma.StudentAnswerUncheckedUpdateManyWithoutAttemptInput>
 }
 
+export type StudentAnswerCreateManyQuestionInput = {
+  id?: string
+  attemptId: string
+  optionId: string
+}
+
+export type StudentAnswerUpdateWithoutQuestionInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  attempt?: Prisma.QuizAttemptUpdateOneRequiredWithoutAnswersNestedInput
+  option?: Prisma.QuizOptionUpdateOneRequiredWithoutAnswersNestedInput
+}
+
+export type StudentAnswerUncheckedUpdateWithoutQuestionInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  attemptId?: Prisma.StringFieldUpdateOperationsInput | string
+  optionId?: Prisma.StringFieldUpdateOperationsInput | string
+}
+
+export type StudentAnswerUncheckedUpdateManyWithoutQuestionInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  attemptId?: Prisma.StringFieldUpdateOperationsInput | string
+  optionId?: Prisma.StringFieldUpdateOperationsInput | string
+}
+
 export type StudentAnswerCreateManyOptionInput = {
   id?: string
   attemptId: string
+  questionId: string
 }
 
 export type StudentAnswerUpdateWithoutOptionInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   attempt?: Prisma.QuizAttemptUpdateOneRequiredWithoutAnswersNestedInput
+  question?: Prisma.QuizQuestionUpdateOneRequiredWithoutStudentAnswersNestedInput
 }
 
 export type StudentAnswerUncheckedUpdateWithoutOptionInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   attemptId?: Prisma.StringFieldUpdateOperationsInput | string
+  questionId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type StudentAnswerUncheckedUpdateManyWithoutOptionInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   attemptId?: Prisma.StringFieldUpdateOperationsInput | string
+  questionId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type StudentAnswerCreateManyAttemptInput = {
   id?: string
+  questionId: string
   optionId: string
 }
 
 export type StudentAnswerUpdateWithoutAttemptInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  question?: Prisma.QuizQuestionUpdateOneRequiredWithoutStudentAnswersNestedInput
   option?: Prisma.QuizOptionUpdateOneRequiredWithoutAnswersNestedInput
 }
 
 export type StudentAnswerUncheckedUpdateWithoutAttemptInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  questionId?: Prisma.StringFieldUpdateOperationsInput | string
   optionId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type StudentAnswerUncheckedUpdateManyWithoutAttemptInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  questionId?: Prisma.StringFieldUpdateOperationsInput | string
   optionId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
@@ -485,44 +632,54 @@ export type StudentAnswerUncheckedUpdateManyWithoutAttemptInput = {
 export type StudentAnswerSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   attemptId?: boolean
+  questionId?: boolean
   optionId?: boolean
   attempt?: boolean | Prisma.QuizAttemptDefaultArgs<ExtArgs>
+  question?: boolean | Prisma.QuizQuestionDefaultArgs<ExtArgs>
   option?: boolean | Prisma.QuizOptionDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["studentAnswer"]>
 
 export type StudentAnswerSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   attemptId?: boolean
+  questionId?: boolean
   optionId?: boolean
   attempt?: boolean | Prisma.QuizAttemptDefaultArgs<ExtArgs>
+  question?: boolean | Prisma.QuizQuestionDefaultArgs<ExtArgs>
   option?: boolean | Prisma.QuizOptionDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["studentAnswer"]>
 
 export type StudentAnswerSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   attemptId?: boolean
+  questionId?: boolean
   optionId?: boolean
   attempt?: boolean | Prisma.QuizAttemptDefaultArgs<ExtArgs>
+  question?: boolean | Prisma.QuizQuestionDefaultArgs<ExtArgs>
   option?: boolean | Prisma.QuizOptionDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["studentAnswer"]>
 
 export type StudentAnswerSelectScalar = {
   id?: boolean
   attemptId?: boolean
+  questionId?: boolean
   optionId?: boolean
 }
 
-export type StudentAnswerOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "attemptId" | "optionId", ExtArgs["result"]["studentAnswer"]>
+export type StudentAnswerOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "attemptId" | "questionId" | "optionId", ExtArgs["result"]["studentAnswer"]>
 export type StudentAnswerInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   attempt?: boolean | Prisma.QuizAttemptDefaultArgs<ExtArgs>
+  question?: boolean | Prisma.QuizQuestionDefaultArgs<ExtArgs>
   option?: boolean | Prisma.QuizOptionDefaultArgs<ExtArgs>
 }
 export type StudentAnswerIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   attempt?: boolean | Prisma.QuizAttemptDefaultArgs<ExtArgs>
+  question?: boolean | Prisma.QuizQuestionDefaultArgs<ExtArgs>
   option?: boolean | Prisma.QuizOptionDefaultArgs<ExtArgs>
 }
 export type StudentAnswerIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   attempt?: boolean | Prisma.QuizAttemptDefaultArgs<ExtArgs>
+  question?: boolean | Prisma.QuizQuestionDefaultArgs<ExtArgs>
   option?: boolean | Prisma.QuizOptionDefaultArgs<ExtArgs>
 }
 
@@ -530,11 +687,13 @@ export type $StudentAnswerPayload<ExtArgs extends runtime.Types.Extensions.Inter
   name: "StudentAnswer"
   objects: {
     attempt: Prisma.$QuizAttemptPayload<ExtArgs>
+    question: Prisma.$QuizQuestionPayload<ExtArgs>
     option: Prisma.$QuizOptionPayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     attemptId: string
+    questionId: string
     optionId: string
   }, ExtArgs["result"]["studentAnswer"]>
   composites: {}
@@ -931,6 +1090,7 @@ readonly fields: StudentAnswerFieldRefs;
 export interface Prisma__StudentAnswerClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   attempt<T extends Prisma.QuizAttemptDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.QuizAttemptDefaultArgs<ExtArgs>>): Prisma.Prisma__QuizAttemptClient<runtime.Types.Result.GetResult<Prisma.$QuizAttemptPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  question<T extends Prisma.QuizQuestionDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.QuizQuestionDefaultArgs<ExtArgs>>): Prisma.Prisma__QuizQuestionClient<runtime.Types.Result.GetResult<Prisma.$QuizQuestionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   option<T extends Prisma.QuizOptionDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.QuizOptionDefaultArgs<ExtArgs>>): Prisma.Prisma__QuizOptionClient<runtime.Types.Result.GetResult<Prisma.$QuizOptionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -963,6 +1123,7 @@ export interface Prisma__StudentAnswerClient<T, Null = never, ExtArgs extends ru
 export interface StudentAnswerFieldRefs {
   readonly id: Prisma.FieldRef<"StudentAnswer", 'String'>
   readonly attemptId: Prisma.FieldRef<"StudentAnswer", 'String'>
+  readonly questionId: Prisma.FieldRef<"StudentAnswer", 'String'>
   readonly optionId: Prisma.FieldRef<"StudentAnswer", 'String'>
 }
     

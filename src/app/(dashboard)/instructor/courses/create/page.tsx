@@ -8,8 +8,6 @@ import {
 } from "@/features/courses/validations/course.schema";
 import { useCreateCourse } from "@/features/courses/hooks/useCreateCourse";
 import { CREATE_COURSE_INPUTS } from "@/data/courses.data";
-
-// مكونات واجهة المستخدم (تأكد من مسارات الاستيراد حسب ما قمت بتثبيته)
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";

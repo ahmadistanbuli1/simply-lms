@@ -43,7 +43,7 @@ export async function POST(req: Request, { params }: RouteParams) {
 
     // Position calculation by retrieving the last chapter in this course
     const lastChapter = await prisma.chapter.findFirst({
-      where: { courseId },
+      where: { courseId: courseId },
       orderBy: { position: "desc" },
     });
 
@@ -53,7 +53,7 @@ export async function POST(req: Request, { params }: RouteParams) {
     const chapter = await prisma.chapter.create({
       data: {
         title: validationResult.data.title,
-        courseId,
+        courseId: courseId,
         position: newPosition,
       },
     });

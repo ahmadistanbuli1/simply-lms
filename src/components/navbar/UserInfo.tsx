@@ -32,7 +32,7 @@ const ROLE_BADGE_CONFIG: Record<
   },
 };
 
-export function UserInfo({ name, email, role }: UserInfoProps) {
+export const UserInfo = ({ name, email, role }: UserInfoProps) => {
   const badge = ROLE_BADGE_CONFIG[role];
   const displayName = name || email.split("@")[0];
 
@@ -45,7 +45,6 @@ export function UserInfo({ name, email, role }: UserInfoProps) {
         {badge.label}
       </span>
 
-      {/* الاسم والبريد */}
       <div className="hidden md:flex flex-col items-end text-right leading-tight">
         <span className="text-sm font-semibold text-foreground truncate max-w-35">
           {displayName}
@@ -58,4 +57,6 @@ export function UserInfo({ name, email, role }: UserInfoProps) {
       <UserButton />
     </div>
   );
-}
+};
+
+export default UserInfo;

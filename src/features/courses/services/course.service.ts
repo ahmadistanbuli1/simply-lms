@@ -3,6 +3,7 @@ import { Chapter, Course } from "../interfaces/course.interface";
 import {
   CreateChapterInput,
   CreateCourseInput,
+  ReorderChaptersInput,
   UpdateCourseInput,
 } from "../validations/course.schema";
 
@@ -35,7 +36,18 @@ export const courseService = {
     payload: CreateChapterInput,
   ): Promise<Chapter> => {
     const { data } = await axiosInstance.post<Chapter>(
-      `/courses/${courseId}/chapters`,
+      `/courses/${encodeURIComponent(courseId)}/chapters`,
+      payload,
+    );
+    return data;
+  },
+
+  reorderChapters: async (
+    courseId: string,
+    payload: ReorderChaptersInput,
+  ): Promise<{ message: string }> => {
+    const { data } = await axiosInstance.put<{ message: string }>(
+      `/courses/${encodeURIComponent(courseId)}/chapters/reorder`,
       payload,
     );
     return data;

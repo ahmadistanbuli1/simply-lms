@@ -2,7 +2,6 @@
 
 generator client {
   provider        = "prisma-client"
-  // تفعيل ميزة المحولات (Driver Adapters) للعمل مع Neon
   previewFeatures = ["driverAdapters"]
   output          = "../generated/prisma"
 }
@@ -53,8 +52,11 @@ model Course {
 model Chapter {
   id          String   @id @default(cuid())
   title       String
+  description String?  @db.Text
+  videoUrl    String?
   position    Int
   isPublished Boolean  @default(false)
+  isFree      Boolean  @default(false)
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 

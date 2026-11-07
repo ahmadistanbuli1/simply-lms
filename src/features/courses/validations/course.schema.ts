@@ -1,6 +1,5 @@
 import { z } from "zod";
 
-// مخطط واحد موحد لتفاصيل الدورة الأساسية (يمنع التكرار DRY)
 export const courseDetailsSchema = z.object({
   title: z
     .string()
@@ -14,7 +13,6 @@ export const courseDetailsSchema = z.object({
 
 export type CourseDetailsInput = z.infer<typeof courseDetailsSchema>;
 
-// إعادة استخدام نفس المخطط عند الإنشاء
 export const createCourseSchema = courseDetailsSchema;
 export type CreateCourseInput = CourseDetailsInput;
 
@@ -35,3 +33,19 @@ export const createChapterSchema = z.object({
 });
 
 export type CreateChapterInput = z.infer<typeof createChapterSchema>;
+
+export const reorderChaptersSchema = z.object({
+  list: z
+    .array(
+      z.object({
+        id: z.string().min(1, { message: "Chapter ID is required." }),
+        position: z
+          .number()
+          .int()
+          .min(1, { message: "Position must be at least 1." }),
+      }),
+    )
+    .min(1, { message: "Reorder list cannot be empty." }),
+});
+
+export type ReorderChaptersInput = z.infer<typeof reorderChaptersSchema>;

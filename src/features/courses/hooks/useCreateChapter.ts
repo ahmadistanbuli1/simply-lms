@@ -5,7 +5,7 @@ import { courseService } from "../services/course.service";
 import { getErrorMessage } from "@/lib/get-error-message";
 import { toast } from "sonner";
 
-export function useCreateChapter(courseId: string) {
+export const useCreateChapter = (courseId: string) => {
   const queryClient = useQueryClient();
 
   return useMutation<Chapter, unknown, CreateChapterInput>({
@@ -18,4 +18,4 @@ export function useCreateChapter(courseId: string) {
       toast.error(getErrorMessage(error));
     },
   });
-}
+};

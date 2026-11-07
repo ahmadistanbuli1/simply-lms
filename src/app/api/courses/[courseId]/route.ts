@@ -7,7 +7,7 @@ interface RouteParams {
   params: Promise<{ courseId: string }>;
 }
 
-export const GET = async (req: Request, { params }: RouteParams) => {
+export const GET = async (_req: Request, { params }: RouteParams) => {
   try {
     const user = await getCurrentDbUser();
     if (!user) {
@@ -75,6 +75,9 @@ export const PATCH = async (req: Request, { params }: RouteParams) => {
     const updatedCourse = await prisma.course.update({
       where: { id: courseId },
       data: validationResult.data,
+      include: {
+        chapters: { orderBy: { position: "asc" } },
+      },
     });
 
     return NextResponse.json(updatedCourse, { status: 200 });

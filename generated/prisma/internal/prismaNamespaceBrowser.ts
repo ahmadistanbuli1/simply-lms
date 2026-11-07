@@ -111,8 +111,11 @@ export type CourseScalarFieldEnum = (typeof CourseScalarFieldEnum)[keyof typeof 
 export const ChapterScalarFieldEnum = {
   id: 'id',
   title: 'title',
+  description: 'description',
+  videoUrl: 'videoUrl',
   position: 'position',
   isPublished: 'isPublished',
+  isFree: 'isFree',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
   courseId: 'courseId'
@@ -214,6 +217,7 @@ export type QuizAttemptScalarFieldEnum = (typeof QuizAttemptScalarFieldEnum)[key
 export const StudentAnswerScalarFieldEnum = {
   id: 'id',
   attemptId: 'attemptId',
+  questionId: 'questionId',
   optionId: 'optionId'
 } as const
 

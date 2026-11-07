@@ -2,7 +2,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { LogIn, UserPlus } from "lucide-react";
 
-export function GuestButtons() {
+export const GuestButtons = () => {
   return (
     <div className="flex items-center gap-2.5">
       <Button asChild variant="ghost" size="sm" className="font-medium">
@@ -20,4 +20,6 @@ export function GuestButtons() {
       </Button>
     </div>
   );
-}
+};
+
+export default GuestButtons;

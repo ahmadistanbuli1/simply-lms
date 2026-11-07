@@ -210,6 +210,7 @@ export type QuizQuestionWhereInput = {
   quizId?: Prisma.StringFilter<"QuizQuestion"> | string
   quiz?: Prisma.XOR<Prisma.QuizScalarRelationFilter, Prisma.QuizWhereInput>
   options?: Prisma.QuizOptionListRelationFilter
+  studentAnswers?: Prisma.StudentAnswerListRelationFilter
 }
 
 export type QuizQuestionOrderByWithRelationInput = {
@@ -219,6 +220,7 @@ export type QuizQuestionOrderByWithRelationInput = {
   quizId?: Prisma.SortOrder
   quiz?: Prisma.QuizOrderByWithRelationInput
   options?: Prisma.QuizOptionOrderByRelationAggregateInput
+  studentAnswers?: Prisma.StudentAnswerOrderByRelationAggregateInput
 }
 
 export type QuizQuestionWhereUniqueInput = Prisma.AtLeast<{
@@ -231,6 +233,7 @@ export type QuizQuestionWhereUniqueInput = Prisma.AtLeast<{
   quizId?: Prisma.StringFilter<"QuizQuestion"> | string
   quiz?: Prisma.XOR<Prisma.QuizScalarRelationFilter, Prisma.QuizWhereInput>
   options?: Prisma.QuizOptionListRelationFilter
+  studentAnswers?: Prisma.StudentAnswerListRelationFilter
 }, "id">
 
 export type QuizQuestionOrderByWithAggregationInput = {
@@ -261,6 +264,7 @@ export type QuizQuestionCreateInput = {
   position: number
   quiz: Prisma.QuizCreateNestedOneWithoutQuestionsInput
   options?: Prisma.QuizOptionCreateNestedManyWithoutQuestionInput
+  studentAnswers?: Prisma.StudentAnswerCreateNestedManyWithoutQuestionInput
 }
 
 export type QuizQuestionUncheckedCreateInput = {
@@ -269,6 +273,7 @@ export type QuizQuestionUncheckedCreateInput = {
   position: number
   quizId: string
   options?: Prisma.QuizOptionUncheckedCreateNestedManyWithoutQuestionInput
+  studentAnswers?: Prisma.StudentAnswerUncheckedCreateNestedManyWithoutQuestionInput
 }
 
 export type QuizQuestionUpdateInput = {
@@ -277,6 +282,7 @@ export type QuizQuestionUpdateInput = {
   position?: Prisma.IntFieldUpdateOperationsInput | number
   quiz?: Prisma.QuizUpdateOneRequiredWithoutQuestionsNestedInput
   options?: Prisma.QuizOptionUpdateManyWithoutQuestionNestedInput
+  studentAnswers?: Prisma.StudentAnswerUpdateManyWithoutQuestionNestedInput
 }
 
 export type QuizQuestionUncheckedUpdateInput = {
@@ -285,6 +291,7 @@ export type QuizQuestionUncheckedUpdateInput = {
   position?: Prisma.IntFieldUpdateOperationsInput | number
   quizId?: Prisma.StringFieldUpdateOperationsInput | string
   options?: Prisma.QuizOptionUncheckedUpdateManyWithoutQuestionNestedInput
+  studentAnswers?: Prisma.StudentAnswerUncheckedUpdateManyWithoutQuestionNestedInput
 }
 
 export type QuizQuestionCreateManyInput = {
@@ -407,11 +414,26 @@ export type QuizQuestionUpdateOneRequiredWithoutOptionsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.QuizQuestionUpdateToOneWithWhereWithoutOptionsInput, Prisma.QuizQuestionUpdateWithoutOptionsInput>, Prisma.QuizQuestionUncheckedUpdateWithoutOptionsInput>
 }
 
+export type QuizQuestionCreateNestedOneWithoutStudentAnswersInput = {
+  create?: Prisma.XOR<Prisma.QuizQuestionCreateWithoutStudentAnswersInput, Prisma.QuizQuestionUncheckedCreateWithoutStudentAnswersInput>
+  connectOrCreate?: Prisma.QuizQuestionCreateOrConnectWithoutStudentAnswersInput
+  connect?: Prisma.QuizQuestionWhereUniqueInput
+}
+
+export type QuizQuestionUpdateOneRequiredWithoutStudentAnswersNestedInput = {
+  create?: Prisma.XOR<Prisma.QuizQuestionCreateWithoutStudentAnswersInput, Prisma.QuizQuestionUncheckedCreateWithoutStudentAnswersInput>
+  connectOrCreate?: Prisma.QuizQuestionCreateOrConnectWithoutStudentAnswersInput
+  upsert?: Prisma.QuizQuestionUpsertWithoutStudentAnswersInput
+  connect?: Prisma.QuizQuestionWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.QuizQuestionUpdateToOneWithWhereWithoutStudentAnswersInput, Prisma.QuizQuestionUpdateWithoutStudentAnswersInput>, Prisma.QuizQuestionUncheckedUpdateWithoutStudentAnswersInput>
+}
+
 export type QuizQuestionCreateWithoutQuizInput = {
   id?: string
   prompt: string
   position: number
   options?: Prisma.QuizOptionCreateNestedManyWithoutQuestionInput
+  studentAnswers?: Prisma.StudentAnswerCreateNestedManyWithoutQuestionInput
 }
 
 export type QuizQuestionUncheckedCreateWithoutQuizInput = {
@@ -419,6 +441,7 @@ export type QuizQuestionUncheckedCreateWithoutQuizInput = {
   prompt: string
   position: number
   options?: Prisma.QuizOptionUncheckedCreateNestedManyWithoutQuestionInput
+  studentAnswers?: Prisma.StudentAnswerUncheckedCreateNestedManyWithoutQuestionInput
 }
 
 export type QuizQuestionCreateOrConnectWithoutQuizInput = {
@@ -462,6 +485,7 @@ export type QuizQuestionCreateWithoutOptionsInput = {
   prompt: string
   position: number
   quiz: Prisma.QuizCreateNestedOneWithoutQuestionsInput
+  studentAnswers?: Prisma.StudentAnswerCreateNestedManyWithoutQuestionInput
 }
 
 export type QuizQuestionUncheckedCreateWithoutOptionsInput = {
@@ -469,6 +493,7 @@ export type QuizQuestionUncheckedCreateWithoutOptionsInput = {
   prompt: string
   position: number
   quizId: string
+  studentAnswers?: Prisma.StudentAnswerUncheckedCreateNestedManyWithoutQuestionInput
 }
 
 export type QuizQuestionCreateOrConnectWithoutOptionsInput = {
@@ -492,6 +517,7 @@ export type QuizQuestionUpdateWithoutOptionsInput = {
   prompt?: Prisma.StringFieldUpdateOperationsInput | string
   position?: Prisma.IntFieldUpdateOperationsInput | number
   quiz?: Prisma.QuizUpdateOneRequiredWithoutQuestionsNestedInput
+  studentAnswers?: Prisma.StudentAnswerUpdateManyWithoutQuestionNestedInput
 }
 
 export type QuizQuestionUncheckedUpdateWithoutOptionsInput = {
@@ -499,6 +525,55 @@ export type QuizQuestionUncheckedUpdateWithoutOptionsInput = {
   prompt?: Prisma.StringFieldUpdateOperationsInput | string
   position?: Prisma.IntFieldUpdateOperationsInput | number
   quizId?: Prisma.StringFieldUpdateOperationsInput | string
+  studentAnswers?: Prisma.StudentAnswerUncheckedUpdateManyWithoutQuestionNestedInput
+}
+
+export type QuizQuestionCreateWithoutStudentAnswersInput = {
+  id?: string
+  prompt: string
+  position: number
+  quiz: Prisma.QuizCreateNestedOneWithoutQuestionsInput
+  options?: Prisma.QuizOptionCreateNestedManyWithoutQuestionInput
+}
+
+export type QuizQuestionUncheckedCreateWithoutStudentAnswersInput = {
+  id?: string
+  prompt: string
+  position: number
+  quizId: string
+  options?: Prisma.QuizOptionUncheckedCreateNestedManyWithoutQuestionInput
+}
+
+export type QuizQuestionCreateOrConnectWithoutStudentAnswersInput = {
+  where: Prisma.QuizQuestionWhereUniqueInput
+  create: Prisma.XOR<Prisma.QuizQuestionCreateWithoutStudentAnswersInput, Prisma.QuizQuestionUncheckedCreateWithoutStudentAnswersInput>
+}
+
+export type QuizQuestionUpsertWithoutStudentAnswersInput = {
+  update: Prisma.XOR<Prisma.QuizQuestionUpdateWithoutStudentAnswersInput, Prisma.QuizQuestionUncheckedUpdateWithoutStudentAnswersInput>
+  create: Prisma.XOR<Prisma.QuizQuestionCreateWithoutStudentAnswersInput, Prisma.QuizQuestionUncheckedCreateWithoutStudentAnswersInput>
+  where?: Prisma.QuizQuestionWhereInput
+}
+
+export type QuizQuestionUpdateToOneWithWhereWithoutStudentAnswersInput = {
+  where?: Prisma.QuizQuestionWhereInput
+  data: Prisma.XOR<Prisma.QuizQuestionUpdateWithoutStudentAnswersInput, Prisma.QuizQuestionUncheckedUpdateWithoutStudentAnswersInput>
+}
+
+export type QuizQuestionUpdateWithoutStudentAnswersInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  prompt?: Prisma.StringFieldUpdateOperationsInput | string
+  position?: Prisma.IntFieldUpdateOperationsInput | number
+  quiz?: Prisma.QuizUpdateOneRequiredWithoutQuestionsNestedInput
+  options?: Prisma.QuizOptionUpdateManyWithoutQuestionNestedInput
+}
+
+export type QuizQuestionUncheckedUpdateWithoutStudentAnswersInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  prompt?: Prisma.StringFieldUpdateOperationsInput | string
+  position?: Prisma.IntFieldUpdateOperationsInput | number
+  quizId?: Prisma.StringFieldUpdateOperationsInput | string
+  options?: Prisma.QuizOptionUncheckedUpdateManyWithoutQuestionNestedInput
 }
 
 export type QuizQuestionCreateManyQuizInput = {
@@ -512,6 +587,7 @@ export type QuizQuestionUpdateWithoutQuizInput = {
   prompt?: Prisma.StringFieldUpdateOperationsInput | string
   position?: Prisma.IntFieldUpdateOperationsInput | number
   options?: Prisma.QuizOptionUpdateManyWithoutQuestionNestedInput
+  studentAnswers?: Prisma.StudentAnswerUpdateManyWithoutQuestionNestedInput
 }
 
 export type QuizQuestionUncheckedUpdateWithoutQuizInput = {
@@ -519,6 +595,7 @@ export type QuizQuestionUncheckedUpdateWithoutQuizInput = {
   prompt?: Prisma.StringFieldUpdateOperationsInput | string
   position?: Prisma.IntFieldUpdateOperationsInput | number
   options?: Prisma.QuizOptionUncheckedUpdateManyWithoutQuestionNestedInput
+  studentAnswers?: Prisma.StudentAnswerUncheckedUpdateManyWithoutQuestionNestedInput
 }
 
 export type QuizQuestionUncheckedUpdateManyWithoutQuizInput = {
@@ -534,10 +611,12 @@ export type QuizQuestionUncheckedUpdateManyWithoutQuizInput = {
 
 export type QuizQuestionCountOutputType = {
   options: number
+  studentAnswers: number
 }
 
 export type QuizQuestionCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   options?: boolean | QuizQuestionCountOutputTypeCountOptionsArgs
+  studentAnswers?: boolean | QuizQuestionCountOutputTypeCountStudentAnswersArgs
 }
 
 /**
@@ -557,6 +636,13 @@ export type QuizQuestionCountOutputTypeCountOptionsArgs<ExtArgs extends runtime.
   where?: Prisma.QuizOptionWhereInput
 }
 
+/**
+ * QuizQuestionCountOutputType without action
+ */
+export type QuizQuestionCountOutputTypeCountStudentAnswersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.StudentAnswerWhereInput
+}
+
 
 export type QuizQuestionSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -565,6 +651,7 @@ export type QuizQuestionSelect<ExtArgs extends runtime.Types.Extensions.Internal
   quizId?: boolean
   quiz?: boolean | Prisma.QuizDefaultArgs<ExtArgs>
   options?: boolean | Prisma.QuizQuestion$optionsArgs<ExtArgs>
+  studentAnswers?: boolean | Prisma.QuizQuestion$studentAnswersArgs<ExtArgs>
   _count?: boolean | Prisma.QuizQuestionCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["quizQuestion"]>
 
@@ -595,6 +682,7 @@ export type QuizQuestionOmit<ExtArgs extends runtime.Types.Extensions.InternalAr
 export type QuizQuestionInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   quiz?: boolean | Prisma.QuizDefaultArgs<ExtArgs>
   options?: boolean | Prisma.QuizQuestion$optionsArgs<ExtArgs>
+  studentAnswers?: boolean | Prisma.QuizQuestion$studentAnswersArgs<ExtArgs>
   _count?: boolean | Prisma.QuizQuestionCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type QuizQuestionIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -609,6 +697,7 @@ export type $QuizQuestionPayload<ExtArgs extends runtime.Types.Extensions.Intern
   objects: {
     quiz: Prisma.$QuizPayload<ExtArgs>
     options: Prisma.$QuizOptionPayload<ExtArgs>[]
+    studentAnswers: Prisma.$StudentAnswerPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1011,6 +1100,7 @@ export interface Prisma__QuizQuestionClient<T, Null = never, ExtArgs extends run
   readonly [Symbol.toStringTag]: "PrismaPromise"
   quiz<T extends Prisma.QuizDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.QuizDefaultArgs<ExtArgs>>): Prisma.Prisma__QuizClient<runtime.Types.Result.GetResult<Prisma.$QuizPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   options<T extends Prisma.QuizQuestion$optionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.QuizQuestion$optionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$QuizOptionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  studentAnswers<T extends Prisma.QuizQuestion$studentAnswersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.QuizQuestion$studentAnswersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$StudentAnswerPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1466,6 +1556,30 @@ export type QuizQuestion$optionsArgs<ExtArgs extends runtime.Types.Extensions.In
   take?: number
   skip?: number
   distinct?: Prisma.QuizOptionScalarFieldEnum | Prisma.QuizOptionScalarFieldEnum[]
+}
+
+/**
+ * QuizQuestion.studentAnswers
+ */
+export type QuizQuestion$studentAnswersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the StudentAnswer
+   */
+  select?: Prisma.StudentAnswerSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the StudentAnswer
+   */
+  omit?: Prisma.StudentAnswerOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.StudentAnswerInclude<ExtArgs> | null
+  where?: Prisma.StudentAnswerWhereInput
+  orderBy?: Prisma.StudentAnswerOrderByWithRelationInput | Prisma.StudentAnswerOrderByWithRelationInput[]
+  cursor?: Prisma.StudentAnswerWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.StudentAnswerScalarFieldEnum | Prisma.StudentAnswerScalarFieldEnum[]
 }
 
 /**
