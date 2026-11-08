@@ -52,4 +52,20 @@ export const courseService = {
     );
     return data;
   },
+
+  publish: async (courseId: string): Promise<Course> => {
+    const { data } = await axiosInstance.patch<Course>(
+      `/courses/${encodeURIComponent(courseId)}/publish`,
+    );
+
+    return data;
+  },
+
+  unpublish: async (courseId: string): Promise<Course> => {
+    const { data } = await axiosInstance.patch<Course>(
+      `/courses/${encodeURIComponent(courseId)}/unpublish`,
+    );
+
+    return data;
+  },
 };

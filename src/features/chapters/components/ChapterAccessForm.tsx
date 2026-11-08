@@ -35,7 +35,9 @@ export const ChapterAccessForm = ({
     defaultValues: {
       isFree: !!initialData.isFree,
     },
-    values: { isFree: !!initialData.isFree },
+    values: {
+      isFree: !!initialData.isFree,
+    },
   });
 
   const handleToggleEdit = () => {

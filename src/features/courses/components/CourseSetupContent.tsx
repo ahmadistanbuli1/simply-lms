@@ -11,6 +11,7 @@ import { useGetCourse } from "../hooks/useGetCourse";
 import { CourseDetailsForm } from "./CourseDetailsForm";
 import { ChaptersForm } from "./ChaptersForm";
 import { CourseImageForm } from "./CourseImageForm";
+import CourseActions from "./CourseActions";
 
 interface CourseSetupContentProps {
   courseId: string;
@@ -39,17 +40,22 @@ export const CourseSetupContent = ({ courseId }: CourseSetupContentProps) => {
     );
   }
 
+  const hasPublishedChapter = course.chapters.some(
+    (chapter) => chapter.isPublished,
+  );
+
   const requiredFields = [
     course.title,
     course.description,
     course.imageUrl,
     (course.chapters ?? []).length > 0,
+    hasPublishedChapter,
   ];
 
   const totalFields = requiredFields.length;
   const completedFields = requiredFields.filter(Boolean).length;
   const progressPercentage = Math.round((completedFields / totalFields) * 100);
-  const isComplete = completedFields === totalFields;
+  const isComplete = requiredFields.every(Boolean);
 
   return (
     <div className="min-h-[calc(100vh-4rem)] bg-background text-foreground pb-16">
@@ -105,6 +111,11 @@ export const CourseSetupContent = ({ courseId }: CourseSetupContentProps) => {
                 />
               </div>
             </div>
+            <CourseActions
+              courseId={course.id}
+              disabled={!isComplete}
+              isPublished={course.isPublished}
+            />
           </div>
         </div>
 

@@ -1,11 +1,18 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowLeft, LayoutDashboard, Eye, Video } from "lucide-react";
+import {
+  ArrowLeft,
+  LayoutDashboard,
+  Eye,
+  Video,
+  AlertTriangle,
+} from "lucide-react";
 import { useGetChapter } from "../hooks/useGetChapter";
 import { ChapterDetailsForm } from "../components/ChapterDetailsForm";
 import { ChapterAccessForm } from "./ChapterAccessForm";
 import { ChapterVideoForm } from "./ChapterVideoForm";
+import { ChapterActions } from "./ChapterActions";
 
 interface ChapterSetupContentProps {
   courseId: string;
@@ -42,9 +49,20 @@ export const ChapterSetupContent = ({
   const totalFields = requiredFields.length;
   const completedFields = requiredFields.filter(Boolean).length;
   const completionText = `(${completedFields}/${totalFields})`;
+  const isComplete = requiredFields.every(Boolean); // true إذا كانت كل الحقول غير فارغة
 
   return (
     <div className="p-6 max-w-5xl mx-auto space-y-6">
+      {!chapter.isPublished && (
+        <div className="w-full border-b border-amber-500/20 bg-amber-500/10 px-6 py-3">
+          <div className="max-w-5xl mx-auto flex items-center gap-2.5 text-amber-600 dark:text-amber-400 text-sm font-medium">
+            <AlertTriangle className="h-4 w-4 shrink-0" />
+            <span>
+              This chapter is unpublished. It will not be visible in the course.
+            </span>
+          </div>
+        </div>
+      )}
       <Link
         href={`/instructor/courses/${courseId}`}
         className="flex items-center text-sm font-medium text-muted-foreground hover:text-primary transition-colors w-fit"
@@ -60,7 +78,12 @@ export const ChapterSetupContent = ({
             Complete all fields {completionText}
           </p>
         </div>
-        {/* (Publish Chapter) */}
+        <ChapterActions
+          disabled={!isComplete} // يُعطل الزر إذا كانت البيانات ناقصة
+          courseId={courseId}
+          chapterId={chapterId}
+          isPublished={Boolean(chapter.isPublished)}
+        />
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-6">
@@ -88,7 +111,9 @@ export const ChapterSetupContent = ({
           </div>
 
           <ChapterAccessForm
-            initialData={{ isFree: Boolean(chapter.isFree) }}
+            initialData={{
+              isFree: Boolean(chapter.isFree),
+            }}
             courseId={courseId}
             chapterId={chapterId}
           />

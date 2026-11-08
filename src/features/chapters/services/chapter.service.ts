@@ -21,4 +21,17 @@ export const chapterService = {
     );
     return data;
   },
+
+  publich: async (courseId: string, chapterId: string): Promise<Chapter> => {
+    const { data } = await axiosInstance.patch<Chapter>(
+      `/courses/${courseId}/chapters/${chapterId}/publish`,
+    );
+    return data;
+  },
+  unpublich: async (courseId: string, chapterId: string): Promise<Chapter> => {
+    const { data } = await axiosInstance.patch<Chapter>(
+      `/courses/${courseId}/chapters/${chapterId}/unpublish`,
+    );
+    return data;
+  },
 };

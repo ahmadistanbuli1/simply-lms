@@ -34,10 +34,6 @@ const HomePage = () => {
     <main className="min-h-[calc(100vh-4rem)] bg-background text-foreground flex flex-col justify-between">
       <section className="relative overflow-hidden py-20 sm:py-28 lg:py-32 px-4 sm:px-6 lg:px-8">
         <div className="max-w-5xl mx-auto text-center space-y-8">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-md border border-border bg-muted/50 text-xs sm:text-sm font-medium text-muted-foreground">
-            <span>Modern E-Learning Architecture — Next.js & Prisma</span>
-          </div>
-
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-foreground leading-tight">
             Master New Skills with{" "}
             <span className="text-primary underline decoration-primary/30 decoration-wavy underline-offset-8">
