@@ -1,15 +1,4 @@
-export interface Chapter {
-  id: string;
-  title: string;
-  description: string | null;
-  videoUrl: string | null;
-  position: number;
-  isPublished: boolean;
-  isFree?: boolean ;
-  courseId: string;
-  createdAt: string;
-  updatedAt: string;
-}
+import { Chapter } from "@/features/chapters/interfaces/chapter.interface";
 
 // The form of the Course that comes from the database
 export interface Course {
@@ -28,4 +17,18 @@ export interface Course {
 export interface CreateCourseResponse {
   course: Course;
   message?: string;
+}
+
+export interface StudentCourseCardItem {
+  id: string;
+  title: string;
+  description: string | null;
+  imageUrl: string | null;
+  createdAt: string;
+  instructor: {
+    name: string | null;
+  };
+  _count: {
+    chapters: number;
+  };
 }

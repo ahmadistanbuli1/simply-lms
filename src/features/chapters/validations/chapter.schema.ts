@@ -17,3 +17,28 @@ export const updateChapterSchema = z.object({
 });
 
 export type UpdateChapterInput = z.infer<typeof updateChapterSchema>;
+
+export const createChapterSchema = z.object({
+  title: z
+    .string()
+    .min(3, { message: "Chapter title must be at least 3 characters." })
+    .max(100, { message: "Chapter title cannot exceed 100 characters." }),
+});
+
+export type CreateChapterInput = z.infer<typeof createChapterSchema>;
+
+export const reorderChaptersSchema = z.object({
+  list: z
+    .array(
+      z.object({
+        id: z.string().min(1, { message: "Chapter ID is required." }),
+        position: z
+          .number()
+          .int()
+          .min(1, { message: "Position must be at least 1." }),
+      }),
+    )
+    .min(1, { message: "Reorder list cannot be empty." }),
+});
+
+export type ReorderChaptersInput = z.infer<typeof reorderChaptersSchema>;

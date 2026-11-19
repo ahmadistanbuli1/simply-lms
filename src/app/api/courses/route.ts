@@ -1,14 +1,11 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { createCourseSchema } from "@/features/courses/validations/course.schema";
-import { getCurrentDbUser } from "@/lib/auth-helper";
+import { getInstructorOrThrow, handleAuthError } from "@/lib/auth-helper";
 
 export async function POST(req: Request) {
   try {
-    const user = await getCurrentDbUser();
-
-    if (!user)
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    const user = await getInstructorOrThrow();
 
     const body = await req.json();
 
@@ -33,6 +30,6 @@ export async function POST(req: Request) {
     return NextResponse.json(course, { status: 201 });
   } catch (error) {
     console.error("[COURSES_POST_API_ERROR]", error);
-    return new NextResponse("Internal Server Error", { status: 500 });
+    return handleAuthError(error);
   }
 }

@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
-import { getCurrentDbUser } from "@/lib/auth-helper";
+import { getInstructorOrThrow, handleAuthError } from "@/lib/auth-helper";
 import { reorderChaptersSchema } from "@/features/courses/validations/course.schema";
 
 interface RouteParams {
@@ -10,7 +10,7 @@ interface RouteParams {
 export async function PUT(req: Request, { params }: RouteParams) {
   try {
     // Authentication
-    const user = await getCurrentDbUser();
+    const user = await getInstructorOrThrow();
     if (!user) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
@@ -75,9 +75,6 @@ export async function PUT(req: Request, { params }: RouteParams) {
     );
   } catch (error) {
     console.error("[CHAPTERS_REORDER_PUT_ERROR]", error);
-    return NextResponse.json(
-      { error: "Internal Server Error" },
-      { status: 500 },
-    );
+    return handleAuthError(error)
   }
 }

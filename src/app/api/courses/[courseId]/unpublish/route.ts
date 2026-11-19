@@ -1,4 +1,8 @@
-import { getCurrentDbUser } from "@/lib/auth-helper";
+import {
+  getInstructorOrThrow,
+  getOwnedCourseOrThrow,
+  handleAuthError,
+} from "@/lib/auth-helper";
 import { prisma } from "@/lib/prisma";
 import { NextResponse } from "next/server";
 
@@ -8,28 +12,11 @@ interface IRouteParams {
 
 export const PATCH = async (req: Request, { params }: IRouteParams) => {
   try {
-    const user = await getCurrentDbUser();
-
-    if (!user) return NextResponse.json({ error: "UnAuthrized", status: 401 });
+    const user = await getInstructorOrThrow();
 
     const { courseId } = await params;
 
-    const course = await prisma.course.findUnique({
-      where: {
-        id: courseId,
-      },
-    });
-
-    if (!course) NextResponse.json({ error: "Course Not Found", status: 404 });
-
-    const courseOwner = await prisma.course.findUnique({
-      where: {
-        id: courseId,
-        instructorId: user.id,
-      },
-    });
-
-    if (!courseOwner) NextResponse.json({ error: "Forbidden", status: 403 });
+    await getOwnedCourseOrThrow(courseId, user.id);
 
     const unpublishCourse = await prisma.course.update({
       where: {
@@ -42,8 +29,8 @@ export const PATCH = async (req: Request, { params }: IRouteParams) => {
     });
 
     return NextResponse.json(unpublishCourse, { status: 201 });
-  } catch (error: unknown) {
+  } catch (error) {
     console.log(`The Error In Route ${error}`);
-    return NextResponse.json({ error: "Invalid Server Error", status: 500 });
+    return handleAuthError(error);
   }
 };

@@ -1,7 +1,11 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { updateCourseSchema } from "@/features/courses/validations/course.schema";
-import { getCurrentDbUser } from "@/lib/auth-helper";
+import {
+  getCurrentDbUser,
+  getInstructorOrThrow,
+  handleAuthError,
+} from "@/lib/auth-helper";
 
 interface RouteParams {
   params: Promise<{ courseId: string }>;
@@ -45,10 +49,7 @@ export const GET = async (_req: Request, { params }: RouteParams) => {
 
 export const PATCH = async (req: Request, { params }: RouteParams) => {
   try {
-    const user = await getCurrentDbUser();
-    if (!user) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-    }
+    const user = await getInstructorOrThrow();
 
     const { courseId } = await params;
     const body = await req.json();
@@ -60,17 +61,15 @@ export const PATCH = async (req: Request, { params }: RouteParams) => {
       return NextResponse.json({ error: errorMessage }, { status: 400 });
     }
 
-    // تحديث الدورة بشرط أن يكون المستخدم هو المالك الفعلي لها
     const existingCourse = await prisma.course.findUnique({
       where: { id: courseId, instructorId: user.id },
     });
 
-    if (!existingCourse) {
+    if (!existingCourse)
       return NextResponse.json(
         { error: "Course not found or access denied" },
         { status: 404 },
       );
-    }
 
     const updatedCourse = await prisma.course.update({
       where: { id: courseId },
@@ -83,9 +82,6 @@ export const PATCH = async (req: Request, { params }: RouteParams) => {
     return NextResponse.json(updatedCourse, { status: 200 });
   } catch (error) {
     console.error("[COURSE_PATCH_ERROR]", error);
-    return NextResponse.json(
-      { error: "Internal Server Error" },
-      { status: 500 },
-    );
+    return handleAuthError(error);
   }
 };

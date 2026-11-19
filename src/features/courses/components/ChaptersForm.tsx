@@ -8,9 +8,9 @@ import { PlusCircle, Loader2, Layers, X } from "lucide-react";
 import {
   createChapterSchema,
   CreateChapterInput,
-} from "../validations/course.schema";
-import { Chapter } from "../interfaces/course.interface";
-import { useCreateChapter } from "../hooks/useCreateChapter";
+} from "@/features/chapters/validations/chapter.schema";
+import { Chapter } from "@/features/chapters/interfaces/chapter.interface";
+import { useCreateChapter } from "@/features/chapters/hooks/useCreateChapter";
 import { useReorderChapters } from "../hooks/useReorderChapters";
 import { ChaptersList } from "./ChaptersList";
 import { Button } from "@/components/ui/button";
